@@ -1,0 +1,14 @@
+body, body::before, body::after {
+  background: #97c6d4; }
+
+header.header {
+  border-bottom: 1px solid #2E6171; }
+
+/* on xs, sm screens */
+/* on >= md  screens */
+@media (min-width: 768px) {
+  header #navbarSupportedContent {
+    position: absolute;
+    right: 0; } }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,19 @@
+header.header {
+    border-bottom: 1px solid $myrtleGreen;
+}
+
+/* on xs, sm screens */
+@media (min-width: 0px) and (max-width: 768px) {
+    
+}
+
+/* on >= md  screens */
+@media (min-width: 768px) {
+    header {
+    
+        #navbarSupportedContent {
+            position: absolute;
+            right: 0;
+        }
+    }
+}
