@@ -1,14 +1,49 @@
 body, body::before, body::after {
   background: #97c6d4; }
 
+/* all screens */
 header.header {
-  border-bottom: 1px solid #2E6171; }
+  border-bottom: 1px solid #4e9eb7; }
+
+.navbar-brand {
+  font-weight: 700;
+  color: #00547d !important; }
 
 /* on xs, sm screens */
+@media (min-width: 0px) and (max-width: 768px) {
+  #login-btn, #employer-signup-btn {
+    font-weight: 500; } }
 /* on >= md  screens */
 @media (min-width: 768px) {
   header #navbarSupportedContent {
     position: absolute;
-    right: 0; } }
+    right: 0; }
+
+  .navbar-brand {
+    font-size: 24px; }
+
+  #login-btn, #employer-signup-btn {
+    border-width: .75px;
+    border-style: solid;
+    border-radius: 2px;
+    margin: 1px;
+    transition: all .2s;
+    font-weight: 500; }
+
+  #login-btn {
+    background: #08859f;
+    border-color: #08859f; }
+    #login-btn a {
+      color: #fff; }
+
+  #login-btn:hover {
+    background: #077187;
+    border-color: #077187; }
+
+  #employer-signup-btn {
+    border-color: #659b71; }
+
+  #employer-signup-btn:hover {
+    background: #659b71; } }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,10 +1,19 @@
+/* all screens */
 header.header {
-    border-bottom: 1px solid $myrtleGreen;
+    border-bottom: 1px solid lighten($myrtleGreen, 20%);
 }
+
+.navbar-brand {
+    font-weight: 700;
+    color: lighten($prussianBlue, 10%) !important;
+}
+
 
 /* on xs, sm screens */
 @media (min-width: 0px) and (max-width: 768px) {
-    
+    #login-btn, #employer-signup-btn {
+        font-weight: 500;
+    }
 }
 
 /* on >= md  screens */
@@ -14,6 +23,43 @@ header.header {
         #navbarSupportedContent {
             position: absolute;
             right: 0;
+            
         }
+    }
+    
+    .navbar-brand {
+        font-size: 24px;
+    
+    }
+    
+    #login-btn, #employer-signup-btn {
+        border-width: .75px;
+        border-style: solid;
+        border-radius: 2px;
+        margin: 1px;
+        transition: all .2s;
+        font-weight: 500;
+    }
+    
+    #login-btn {
+        background: lighten($metallicSeaweed, 5%);
+        border-color: lighten($metallicSeaweed, 5%);
+        
+        a {
+            color: $white;
+        }
+    }
+    
+    #login-btn:hover {
+        background: $metallicSeaweed;
+        border-color: $metallicSeaweed;
+    }
+    
+    #employer-signup-btn {
+        border-color: darken($shinyShamrock, 5%);
+    }
+    
+    #employer-signup-btn:hover {
+        background: darken($shinyShamrock, 5%);
     }
 }

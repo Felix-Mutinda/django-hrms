@@ -19,17 +19,17 @@
             <div class="col-md-10 col-sm-12">
                 <header class="header">
                     <nav class="navbar navbar-expand-md navbar-light">
-                      <a class="navbar-brand" href="#">Django HRMS</a>
+                      <a class="navbar-brand" href="{% url 'core:home' %}">Django HRMS</a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>
                     
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                          <li class="nav-item active">
+                          <li class="nav-item active" id="login-btn">
                             <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item" id="employer-signup-btn">
                             <a class="nav-link" href="#">Employer Signup</a>
                           </li>
                         </ul>
