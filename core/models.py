@@ -60,3 +60,14 @@ class Employee(models.Model):
     
     # employee 'belongs' to employer
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
+
+# company assets, owned by the employer
+class Asset(models.Model):
+    asset = models.CharField(max_length=50, blank=False, primary_key=True)
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
+    description = models.CharField(max_length=200)
+
+# track which asset is owned by which employee
+class AssignedAsset(models.Model):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
