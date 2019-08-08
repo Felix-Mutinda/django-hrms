@@ -26,12 +26,18 @@
                     
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                          <li class="nav-item active" id="login-btn">
-                            <a class="nav-link" href="{% url 'core:login' %}">Login <span class="sr-only">(current)</span></a>
-                          </li>
-                          <li class="nav-item" id="employer-signup-btn">
-                            <a class="nav-link" href="{% url 'core:employer_signup' %}">Employer Signup</a>
-                          </li>
+                            {% if user.is_authenticated %}
+                                <li class="nav-item active" id="logout-btn">
+                                    <a class="nav-link" href="{% url 'core:logout' %}">Logout <span class="sr-only">(current)</span></a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item active" id="login-btn">
+                                    <a class="nav-link" href="{% url 'core:login' %}">Login <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item" id="employer-signup-btn">
+                                    <a class="nav-link" href="{% url 'core:employer_signup' %}">Employer Signup</a>
+                                </li>
+                            {% endif %}
                         </ul>
                         
                       </div>

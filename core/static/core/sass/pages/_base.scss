@@ -5,13 +5,13 @@ header.header {
 
 .navbar-brand {
     font-weight: 700;
-    color: lighten($prussianBlue, 10%) !important;
+    color: lighten($prussianBlue, 15%) !important;
 }
 
 
 /* on xs, sm screens */
 @media (min-width: 0px) and (max-width: 768px) {
-    #login-btn, #employer-signup-btn {
+    #login-btn, #logout-btn, #employer-signup-btn {
         font-weight: 500;
     }
 }
@@ -32,7 +32,7 @@ header.header {
     
     }
     
-    #login-btn, #employer-signup-btn {
+    #login-btn, #logout-btn, #employer-signup-btn {
         border-width: .75px;
         border-style: solid;
         border-radius: 2px;
@@ -53,6 +53,20 @@ header.header {
     #login-btn:hover {
         background: $metallicSeaweed;
         border-color: $metallicSeaweed;
+    }
+    
+    #logout-btn {
+        background: lighten($prussianBlue, 15%);
+        border-color: lighten($prussianBlue, 15%);
+        
+        a {
+            color: $white;
+        }
+    }
+    
+    #logout-btn:hover {
+        background: lighten($prussianBlue, 10%);
+        border-color: lighten($prussianBlue, 10%);
     }
     
     #employer-signup-btn {

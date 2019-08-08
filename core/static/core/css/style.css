@@ -7,11 +7,11 @@ header.header {
 
 .navbar-brand {
   font-weight: 700;
-  color: #00547d !important; }
+  color: #006697 !important; }
 
 /* on xs, sm screens */
 @media (min-width: 0px) and (max-width: 768px) {
-  #login-btn, #employer-signup-btn {
+  #login-btn, #logout-btn, #employer-signup-btn {
     font-weight: 500; } }
 /* on >= md  screens */
 @media (min-width: 768px) {
@@ -22,7 +22,7 @@ header.header {
   .navbar-brand {
     font-size: 24px; }
 
-  #login-btn, #employer-signup-btn {
+  #login-btn, #logout-btn, #employer-signup-btn {
     border-width: .75px;
     border-style: solid;
     border-radius: 2px;
@@ -39,6 +39,16 @@ header.header {
   #login-btn:hover {
     background: #077187;
     border-color: #077187; }
+
+  #logout-btn {
+    background: #006697;
+    border-color: #006697; }
+    #logout-btn a {
+      color: #fff; }
+
+  #logout-btn:hover {
+    background: #00547d;
+    border-color: #00547d; }
 
   #employer-signup-btn {
     border-color: #659b71; }
