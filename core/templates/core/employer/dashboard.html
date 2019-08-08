@@ -3,7 +3,7 @@
 {% block title %}Django HRMS - Dashboard{% endblock %}
 
 {% block content %}
-    <div class="main-tabbed-nav">
+    <div class="main-tabbed-nav mb-3">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" href="#">Employees</a>
@@ -20,7 +20,9 @@
         </ul>
     </div>
     
-    <div class="main-content ">
-        
+    <div class="main-content card">
+        <div class="card-body">
+            {% include './employees.html' %}
+        </div>
     </div>
 {% endblock %}

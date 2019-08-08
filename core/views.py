@@ -4,6 +4,8 @@ from django.http import HttpResponse
 
 from .forms import EmployerSignupForm
 
+from .models import User, Employer, Employee, Asset, AssignedAsset
+
 def home(request):
     '''
     handles requests to the home page.
@@ -42,3 +44,27 @@ def login_redirect(request):
     if request.user.is_employer:
         return redirect('core:employer_dashboard')
     return redirect('core:employee_dashboard')
+    
+
+# displays all employees associated with the current user
+# and a form to add a new employee.
+def employees_list(request):
+    user = request.user
+    
+    # filter all Employees that belong to me (Employer) i.e user.employer
+    employees = Employee.objects.filter(employer=user.employer)
+    employees = [e.user for e in employees]
+    return render(request, 'core/employer/employees.html', {'employees': employees})
+    
+
+
+
+
+
+
+
+
+
+
+
+

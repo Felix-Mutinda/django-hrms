@@ -1,0 +1,20 @@
+
+#btn-add-employee {
+    background: $metallicSeaweed;
+    border-color: $metallicSeaweed;
+    margin: 3px;
+    padding:10px;
+    color: $white;
+    border: none;
+    
+    span {
+        margin-right: 3px;
+        padding: 0 3px;
+        border-radius: 10%;
+        font-weight: 600;
+        font-size: 18px;
+        // background: lighten($metallicSeaweed, 5%);
+        box-sizing: border-box;
+        display: inline-block;
+    }
+}

@@ -22,7 +22,7 @@ header.header {
   .navbar-brand {
     font-size: 24px; }
 
-  #login-btn, #logout-btn, #employer-signup-btn {
+  .my-btn {
     border-width: .75px;
     border-style: solid;
     border-radius: 2px;
@@ -55,5 +55,20 @@ header.header {
 
   #employer-signup-btn:hover {
     background: #659b71; } }
+#btn-add-employee {
+  background: #077187;
+  border-color: #077187;
+  margin: 3px;
+  padding: 10px;
+  color: #fff;
+  border: none; }
+  #btn-add-employee span {
+    margin-right: 3px;
+    padding: 0 3px;
+    border-radius: 10%;
+    font-weight: 600;
+    font-size: 18px;
+    box-sizing: border-box;
+    display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
