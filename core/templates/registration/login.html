@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Django HRMS - Login{% endblock %}
+
+{% block content %}
+    <p>Welcome to Login.</p>
+    
+    <form action="{% url 'core:login' %}" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}

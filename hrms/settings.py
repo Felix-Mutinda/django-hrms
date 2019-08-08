@@ -125,3 +125,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # use custom auth model
 AUTH_USER_MODEL = 'core.User'
+
+
+# auth urls
+LOGIN_URL = 'core:login'
+LOGOUT_URL = 'core:logout'
+LOGIN_REDIRECT_URL = 'core:login_redirect'
+LOGOUT_REDIRECT_URL = 'core:home'

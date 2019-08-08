@@ -32,3 +32,13 @@ def employer_signup(request):
 # the employer dashboard
 def employer_dashboard(request):
     return render(request, 'core/employer_dashboard.html')
+    
+# the employee dashboard
+def employee_dashboard(request):
+    return render(request, 'core/employee_dashboard.html')
+
+# redirect employer to employer_dashboard and employee to employee_dashboard
+def login_redirect(request):
+    if request.user.is_employer:
+        return redirect('core:employer_dashboard')
+    return redirect('core:employee_dashboard')
