@@ -18,7 +18,7 @@ class User(AbstractUser):
     position = models.CharField(max_length=200, default=None, blank=True, null=True)
     
     # phone number
-    phone_number = models.CharField(max_length=15, default=None, blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=False)
     
     # date of birth
     date_of_birth = models.DateField(default=None, blank=True, null=True)
