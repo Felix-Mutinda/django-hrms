@@ -56,6 +56,28 @@ def employees_list(request):
     employees = [e.user for e in employees]
     return render(request, 'core/employer/employees.html', {'employees': employees})
     
+# displays all assets associated with  the current user
+# and a form to add a  new asset.
+def employer_assets(request):
+    user = request.user
+    assets = Asset.objects.filter(employer=user.employer)
+    
+    return render(request, 'core/employer/assets.html', {'assets': assets})
+    
+
+# the current user profile
+def employer_profile(request):
+    
+    return render(request, 'core/employer/profile.html')
+
+# displays a real time notifications page for the current user,
+# the notifications are delivered using pusher/channels
+def employer_notifications(request):
+    
+    return render(request, 'core/employer/notifications.html')
+
+
+
 
 
 
