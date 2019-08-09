@@ -1,6 +1,30 @@
 body, body::before, body::after {
   background: #97c6d4; }
 
+.my-btn {
+  border-width: .75px;
+  border-style: solid;
+  border-radius: 2px;
+  margin: 1px;
+  transition: all .2s;
+  font-weight: 500; }
+
+.btn-add {
+  background: #077187;
+  border-color: #077187;
+  margin: 3px;
+  padding: 10px;
+  color: #fff;
+  border: none; }
+  .btn-add span {
+    margin-right: 3px;
+    padding: 0 3px;
+    border-radius: 10%;
+    font-weight: 600;
+    font-size: 18px;
+    box-sizing: border-box;
+    display: inline-block; }
+
 /* all screens */
 header.header {
   border-bottom: 1px solid #4e9eb7; }
@@ -21,14 +45,6 @@ header.header {
 
   .navbar-brand {
     font-size: 24px; }
-
-  .my-btn {
-    border-width: .75px;
-    border-style: solid;
-    border-radius: 2px;
-    margin: 1px;
-    transition: all .2s;
-    font-weight: 500; }
 
   #login-btn {
     background: #08859f;
@@ -55,20 +71,6 @@ header.header {
 
   #employer-signup-btn:hover {
     background: #659b71; } }
-#btn-add-employee {
-  background: #077187;
-  border-color: #077187;
-  margin: 3px;
-  padding: 10px;
-  color: #fff;
-  border: none; }
-  #btn-add-employee span {
-    margin-right: 3px;
-    padding: 0 3px;
-    border-radius: 10%;
-    font-weight: 600;
-    font-size: 18px;
-    box-sizing: border-box;
-    display: inline-block; }
+/* employer => employees */
 
 /*# sourceMappingURL=style.css.map */
