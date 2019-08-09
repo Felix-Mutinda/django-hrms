@@ -14,6 +14,7 @@ urlpatterns = [
     path('employer/assets/', core_views.employer_assets, name='employer_assets'),
     path('employer/notifications/', core_views.employer_notifications, name='employer_notifications'),
     path('employer/profile/', core_views.employer_profile, name='employer_profile'),
+    path('employee/add/', core_views.employee_add, name='employee_add'),
     
     # employee only
     path('employee/dashboard/', core_views.employee_dashboard, name='employee_dashboard'),

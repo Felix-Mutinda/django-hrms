@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 
-from .forms import EmployerSignupForm
+from .forms import EmployerSignupForm, EmployeeCreationForm
 
 from .models import User, Employer, Employee, Asset, AssignedAsset
 
@@ -77,7 +77,23 @@ def employer_notifications(request):
     return render(request, 'core/employer/notifications.html')
 
 
-
+# add employee (invoked using fetch)
+def employee_add(request):
+    if request.method == 'POST':
+        form = EmployeeCreationForm(request.POST)
+        if form.is_valid():
+            # add a user with is_employee flag
+            emp = form.save()
+            emp.is_employee = True
+            emp.save()
+            
+            # create employee profile for the just saved user,
+            # associate employer as current user
+            Employee.objects.create(user=emp, employer=request.user.employer)
+    else:
+        form = EmployeeCreationForm()
+            
+    return render(request, 'core/employer/employee_add.html', {'form': form})
 
 
 

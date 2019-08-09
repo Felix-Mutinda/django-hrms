@@ -32,10 +32,10 @@ class EmployerSignupForm(UserCreationForm):
         
 # employee creation form.
 # the employee profile which has employer_id,
-# will be created in the create_employee view
-# since we do not have the request object.
-class EmployeeCreationForm(forms.ModelForm):
-    class Meta:
+# will be created in the employee_add view
+# since we do not have the request object to get the current user
+class EmployeeCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
         model = User
         fields = ['username', 'email']
     
@@ -46,7 +46,7 @@ class EmployeeCreationForm(forms.ModelForm):
         user.save()
         
         # employee profile omitted.
-        # employee = Employer.objects.create(
+        # employee = Employee.objects.create(
         #       user = user,
-        #       employer = request.user
+        #       employer = request.user.employer
         # )
