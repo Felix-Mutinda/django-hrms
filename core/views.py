@@ -93,7 +93,7 @@ def employee_add(request):
             # current user becomes the employer
             emp = form.add_employer(request.user.employer)
             
-            return HttpResponse('<p>User added successfully</p>')
+            return redirect('core:employer_dashboard')
     else:
         form = EmployeeCreationForm()
             

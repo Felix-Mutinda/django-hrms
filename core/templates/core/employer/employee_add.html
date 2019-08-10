@@ -1,8 +1,7 @@
-<p>Welcome to Employee add.</p>
-    
-<form method="post">
+{% include './_handle_employee_add_script.html' %}
+
+<form method="post" action="{% url 'core:employee_add' %}" id="employee-add-form" >
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add</button>
+    <button type="submit" id="employee-add-btn">Add</button>
 </form>
-
