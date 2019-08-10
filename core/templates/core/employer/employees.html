@@ -1,6 +1,14 @@
 
-<button type="button" class="my-btn btn-add"><span>+</span>Add Employee</button>
-
+<button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#employeeAddForm"><span>+</span>Add Employee</button>
+<div class="collapse" id="employeeAddForm">
+    <div class="employee-add-form">
+        <form method="post" action="{% url 'core:employee_add' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" id="employee-add-btn">Add</button>
+        </form>
+    </div>
+</div>
 {% for employee in employees %}
     <div class="row">
         <div class="col-md-4 col-sm-3">

@@ -50,6 +50,11 @@ $(function() {
     /* display employees list on employer dashboard by default */
     updateMainContent('/employer/employees');
     
+    /* Employee add handler */
+    function AddEmployee(e) {
+        
+    }
+    
 });
 
 

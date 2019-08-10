@@ -54,7 +54,13 @@ def employees_list(request):
     # filter all Employees that belong to me (Employer) i.e user.employer
     employees = Employee.objects.filter(employer=user.employer)
     employees = [e.user for e in employees]
-    return render(request, 'core/employer/employees.html', {'employees': employees})
+    
+    emp_creation_form = EmployeeCreationForm()
+    
+    return render(request, 'core/employer/employees.html', {
+        'employees': employees,
+        'form': emp_creation_form
+    })
     
 # displays all assets associated with  the current user
 # and a form to add a  new asset.
@@ -77,19 +83,17 @@ def employer_notifications(request):
     return render(request, 'core/employer/notifications.html')
 
 
-# add employee (invoked using fetch)
+# add employee 
 def employee_add(request):
     if request.method == 'POST':
         form = EmployeeCreationForm(request.POST)
         if form.is_valid():
-            # add a user with is_employee flag
-            emp = form.save()
-            emp.is_employee = True
-            emp.save()
+            form.save()
             
-            # create employee profile for the just saved user,
-            # associate employer as current user
-            Employee.objects.create(user=emp, employer=request.user.employer)
+            # current user becomes the employer
+            emp = form.add_employer(request.user.employer)
+            
+            return HttpResponse('<p>User added successfully</p>')
     else:
         form = EmployeeCreationForm()
             
