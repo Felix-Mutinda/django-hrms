@@ -1,17 +1,18 @@
-
+<table class="table table-bordered">
+    <tr>
+        <th>Asset ID</th>
+        <th>Asset Description</th>
+    </tr>
 {% for asset in assets %}
-    <table>
-        <tr>
-            <th>Asset ID</th>
-            <th>Asset Description</th>
-        </tr>
+    
         <tr>
             <td>{{ asset.asset }}</td>
             <td>{{ asset.description }}</td>
         </tr>
-    </table>
+   
 {% empty %}
-    <p>
-        You have not being assigned any assets yet.
-    </p>
+    <td colspan="2" class="text-muted">
+        <em>You have not being assigned any assets yet.</em>
+    </td>
 {% endfor %}
+</table>
