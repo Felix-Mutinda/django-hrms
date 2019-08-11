@@ -1,3 +1,7 @@
-<p>
-    The Employer Profile Page.
-</p>
+{% include './_handle_employer_profile_update_script.html' %}
+
+<form action="{% url 'core:employer_profile' %}" method="post" accept-charset="utf-8" id="employer-profile-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" id="employer-profile-btn">Save</button>
+</form>

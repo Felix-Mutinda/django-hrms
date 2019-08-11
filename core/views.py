@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 
-from .forms import EmployerSignupForm, EmployeeCreationForm, AssetCreationForm
+from .forms import *
 
 from .models import User, Employer, Employee, Asset, AssignedAsset
 
@@ -30,6 +30,27 @@ def employer_signup(request):
         form = EmployerSignupForm()
     
     return render(request, 'core/employer/signup.html', {'form': form})
+
+
+# employer profile
+def employer_profile(request):
+    user = request.user
+    form = EmployerProfileForm(request.POST or None, instance=user, initial = {
+        'company_name': user.employer.company,
+        'number_of_employees': user.employer.number_of_employees
+    })
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save()
+            
+        # rebind form due to employer profile
+        form = EmployerProfileForm(request.POST, instance = user, initial = {
+            'company_name': user.employer.company,
+            'number_of_employees': user.employer.number_of_employees
+        })
+        
+    return render(request, 'core/employer/profile.html', {'form': form})
 
 # the employer dashboard
 def employer_dashboard(request):
@@ -76,11 +97,6 @@ def employer_assets(request):
     })
     
 
-# the current user profile
-def employer_profile(request):
-    
-    return render(request, 'core/employer/profile.html')
-
 # displays a real time notifications page for the current user,
 # the notifications are delivered using pusher/channels
 def employer_notifications(request):
@@ -93,10 +109,13 @@ def employee_add(request):
     if request.method == 'POST':
         form = EmployeeCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            employee = form.save()
             
-            # current user becomes the employer
-            emp = form.add_employer(request.user.employer)
+            # current user becomes the employer of employee
+            Employee.objects.create(
+                user = employee,
+                employer = request.user.employer
+            )
             
             # unbind form for adding another user
             form = EmployeeCreationForm()

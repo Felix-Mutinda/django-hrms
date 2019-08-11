@@ -29,6 +29,29 @@ class EmployerSignupForm(UserCreationForm):
         )
         
         return user
+
+# employer view/update profile 
+class EmployerProfileForm(forms.ModelForm):
+    company_name = forms.CharField()
+    number_of_employees = forms.IntegerField()
+    
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'email',
+            'phone_number',
+        )
+    
+    def save(self):
+        user = super().save()
+        
+        # update corresponding employer profile
+        user.employer.company = self.cleaned_data.get('company_name')
+        user.employer.number_of_employees = self.cleaned_data.get('number_of_employees')
+        user.employer.save()
+        
+        return user
         
 # employee creation form.
 class EmployeeCreationForm(forms.ModelForm):
@@ -38,26 +61,13 @@ class EmployeeCreationForm(forms.ModelForm):
         fields = ['username', 'email', 'position']
     
     # designate user as an employee
+    @transaction.atomic
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_employee = True
         user.save()
         
-
-    # requires an employer object to associate employee with
-    @transaction.atomic
-    def add_employer(self, employer):
-        user = super().save(commit=False)
-        user.is_employee = True
-        user.save()
-        
-        employee = Employee.objects.create(
-              user = user,
-              employer = employer
-        )
-        
         return user
-
 
 # form for adding a new asset
 class AssetCreationForm(forms.ModelForm):
