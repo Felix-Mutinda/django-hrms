@@ -1,0 +1,17 @@
+
+{% for asset in assets %}
+    <table>
+        <tr>
+            <th>Asset ID</th>
+            <th>Asset Description</th>
+        </tr>
+        <tr>
+            <td>{{ asset.asset }}</td>
+            <td>{{ asset.description }}</td>
+        </tr>
+    </table>
+{% empty %}
+    <p>
+        You have not being assigned any assets yet.
+    </p>
+{% endfor %}

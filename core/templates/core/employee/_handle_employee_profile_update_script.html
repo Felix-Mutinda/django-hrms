@@ -1,7 +1,7 @@
 <script type="text/javascript">
 
-    /* employer profile update handler */
-    $('#employer-profile-form').submit(function(e){
+    /* employee profile update handler */
+    $('#employee-profile-form').submit(function(e){
         e.preventDefault();
         
         /* read the form */
@@ -10,11 +10,9 @@
             'username': $("input[name='username']").val(),
             'email': $("input[name='email']").val(),
             'phone_number': $("input[name='phone_number']").val(),
-            'company_name': $("input[name='company_name']").val(),
-            'number_of_employees': $("input[name='number_of_employees']").val()
         }
         
-        let url = $('#employer-profile-form').attr('action');
+        let url = $('#employee-profile-form').attr('action');
         
         /* post form using ajax */
         $.post(url, formData, function(data, status){

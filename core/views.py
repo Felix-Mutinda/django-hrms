@@ -143,6 +143,26 @@ def asset_add(request):
 
     return render(request, 'core/employer/asset_add.html', {'form': form})
 
+# display employee assigned asset 
+def employee_assigned_assets(request):
+    assigned_assets = AssignedAsset.objects.filter(employee=request.user.employee)
+    assets = [a.asset for a in assigned_assets]
+    
+    return render(request, 'core/employee/assigned_assets.html', {'assets': assets})
+
+
+# employee profile 
+def employee_profile(request):
+    form = EmployeeProfileForm(request.POST or None, instance=request.user)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save()
+            
+    return render(request, 'core/employee/profile.html', {'form': form})
+
+
+
 
 
 

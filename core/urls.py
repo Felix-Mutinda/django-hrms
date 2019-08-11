@@ -19,6 +19,8 @@ urlpatterns = [
     
     # employee only
     path('employee/dashboard/', core_views.employee_dashboard, name='employee_dashboard'),
+    path('employee/assigned-assets/', core_views.employee_assigned_assets, name='employee_assigned_assets'),
+    path('employee/profile/', core_views.employee_profile, name='employee_profile'),
     
     # all users
     path('login/', auth_views.LoginView.as_view(), name='login'),

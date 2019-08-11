@@ -21,33 +21,51 @@ $(function() {
     }    
     
     /* bind events to main content tab menu links */
-    const employeesTab = $('#employees-tab');
-    const assetsTab = $('#assets-tab');
-    const notificationsTab = $('#notifications-tab');
-    const profileTab = $('#profile-tab');
+    const employerEmployeesTab = $('#employer-employees-tab');
+    const employerAssetsTab = $('#employer-assets-tab');
+    const employerNotificationsTab = $('#employer-notifications-tab');
+    const employerProfileTab = $('#employer-profile-tab');
     
-    employeesTab.on('click', function(e) {
+    const employeeAssignedAssetsTab = $('#employee-assigned-assets-tab');
+    const employeeProfileTab = $('#employee-profile-tab');
+    
+    employerEmployeesTab.on('click', function(e) {
         activateTab();
         updateMainContent('/employer/employees');
     });
     
-    assetsTab.on('click', function(e) {
+    employerAssetsTab.on('click', function(e) {
         activateTab();
         updateMainContent('/employer/assets');
     });
     
-    notificationsTab.on('click', function(e) {
+    employerNotificationsTab.on('click', function(e) {
         activateTab();
         updateMainContent('/employer/notifications');
     });
     
-    profileTab.on('click', function(e) {
+    employerProfileTab.on('click', function(e) {
         activateTab();
         updateMainContent('/employer/profile');
     });
     
+    employeeAssignedAssetsTab.on('click', function(e) {
+        activateTab();
+        updateMainContent('/employee/assigned-assets');
+    });
+    
+    employeeProfileTab.on('click', function(e) {
+        activateTab();
+        updateMainContent('/employee/profile');
+    });
+    
     /* display employees list on employer dashboard by default */
-    updateMainContent('/employer/employees');
+    if ($(location).attr('pathname') == '/employer/dashboard/') {
+        updateMainContent('/employer/employees');
+    } else {
+        updateMainContent('/employee/assigned-assets');
+    }
+    
     
 });
 
