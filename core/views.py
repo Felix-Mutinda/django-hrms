@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 
-from .forms import EmployerSignupForm, EmployeeCreationForm
+from .forms import EmployerSignupForm, EmployeeCreationForm, AssetCreationForm
 
 from .models import User, Employer, Employee, Asset, AssignedAsset
 
@@ -68,7 +68,12 @@ def employer_assets(request):
     user = request.user
     assets = Asset.objects.filter(employer=user.employer)
     
-    return render(request, 'core/employer/assets.html', {'assets': assets})
+    form  = AssetCreationForm()
+    
+    return render(request, 'core/employer/assets.html', {
+        'assets': assets,
+        'form': form
+    })
     
 
 # the current user profile
@@ -93,15 +98,31 @@ def employee_add(request):
             # current user becomes the employer
             emp = form.add_employer(request.user.employer)
             
-            return redirect('core:employer_dashboard')
+            # unbind form for adding another user
+            form = EmployeeCreationForm()
+            
+            # return redirect('core:employer_dashboard')
     else:
         form = EmployeeCreationForm()
             
     return render(request, 'core/employer/employee_add.html', {'form': form})
 
 
+# add company asset
+def asset_add(request):
+    if request.method == 'POST':
+        form = AssetCreationForm(request.POST)
+        if form.is_valid():
+            # set the owner/employer before save
+            form.set_employer(request.user.employer)
+            form.save()
+            
+            # unbind form for adding another asset
+            form = AssetCreationForm()
+    else: # GET
+        form = AssetCreationForm()
 
-
+    return render(request, 'core/employer/asset_add.html', {'form': form})
 
 
 

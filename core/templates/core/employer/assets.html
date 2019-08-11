@@ -1,4 +1,10 @@
-<button type="button" class="my-btn btn-add"><span>+</span>Add Asset</button>
+
+<button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#assetAddForm"><span>+</span>Add Asset</button>
+<div class="collapse" id="assetAddForm">
+    <div class="asset-add-form-wrapper">
+        {% include './asset_add.html' %}
+    </div>
+</div>
 
 {% for asset in assets %}
     <div class="row">

@@ -1,4 +1,3 @@
-{% include './_handle_employee_add_script.html' %}
 
 <button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#employeeAddForm"><span>+</span>Add Employee</button>
 <div class="collapse" id="employeeAddForm">
@@ -6,6 +5,7 @@
         {% include './employee_add.html' %}
     </div>
 </div>
+
 {% for employee in employees %}
     <div class="row">
         <div class="col-md-4 col-sm-3">

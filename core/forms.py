@@ -33,7 +33,7 @@ class EmployerSignupForm(UserCreationForm):
 # employee creation form.
 class EmployeeCreationForm(forms.ModelForm):
     
-    class Meta():
+    class Meta:
         model = User
         fields = ['username', 'email', 'position']
     
@@ -57,3 +57,39 @@ class EmployeeCreationForm(forms.ModelForm):
         )
         
         return user
+
+
+# form for adding a new asset
+class AssetCreationForm(forms.ModelForm):
+    
+    class Meta:
+        model = Asset
+        fields = ['asset', 'description']
+    
+    # asset belongs to an employer
+    def set_employer(self, employer):
+        self.employer = employer
+    
+    @transaction.atomic
+    def save(self, commit=True):
+        asset = super().save(commit=False)
+        asset.employer = self.employer # expects employer to have been set
+        asset.save()
+        
+        return asset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
