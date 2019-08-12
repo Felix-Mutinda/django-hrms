@@ -101,11 +101,14 @@ def employer_assets(request):
     
     new_asset_form  = AssetCreationForm()
     asset_assign_form = AssignAssetForm()
+    asset_reclaim_form = ReclaimAssetForm()
     
     return render(request, 'core/employer/assets.html', {
         'assets': assets,
+        'assigned_assets': l,
         'new_asset_form': new_asset_form,
-        'asset_assign_form': asset_assign_form
+        'asset_assign_form': asset_assign_form,
+        'asset_reclaim_form': asset_reclaim_form
     })
     
 
@@ -196,7 +199,21 @@ def asset_assign(request):
 
 # reclaim an assigned asset 
 def asset_reclaim(request):
-    pass
+    if request.method == 'POST':
+        form = ReclaimAssetForm(request.POST)
+        if form.is_valid():
+            asset_id = form.cleaned_data.get('asset_id')
+            print('\n\n==',asset_id, '==\n\n')
+            
+            assigned_asset = AssignedAsset.objects.get(asset_id=asset_id)
+            assigned_asset.delete()
+            
+            # unbind form
+            form = ReclaimAssetForm()
+    else:
+        form = ReclaimAssetForm()
+    
+    return render(request, 'core/employer/asset_reclaim.html', {'asset_reclaim_form': form})
 
 
 

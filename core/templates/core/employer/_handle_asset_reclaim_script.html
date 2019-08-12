@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    /* asset reclaim handler */
+    $('#asset-reclaim-form').submit(function(event){
+        event.preventDefault();
+
+        /* read the form */
+        let formData = {
+            'csrfmiddlewaretoken': $("#asset-reclaim-form input[name='csrfmiddlewaretoken']").val(),
+            'asset_id': $("#asset-reclaim-form input[name='asset_id']").val(),
+        }
+
+        let url = $('#asset-reclaim-form').attr('action');
+        
+        /* post form using ajax */
+        $.post(url, formData, function(data, status){
+            $('.asset-reclaim-form-wrapper').html(data);
+        });
+    });
+    
+
+</script>

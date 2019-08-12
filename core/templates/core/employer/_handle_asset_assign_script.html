@@ -5,9 +5,9 @@
 
         /* read the form */
         let formData = {
-            'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
-            'asset_id': $("input[name='asset_id']").val(),
-            'employee_email': $("input[name='employee_email']").val(),
+            'csrfmiddlewaretoken': $("#asset-assign-form input[name='csrfmiddlewaretoken']").val(),
+            'asset_id': $("#asset-assign-form input[name='asset_id']").val(),
+            'employee_email': $("#asset-assign-form input[name='employee_email']").val(),
         }
         
         let url = $('#asset-assign-form').attr('action');
@@ -17,5 +17,6 @@
             $('.asset-assign-form-wrapper').html(data);
         });
     });
+    
 
 </script>

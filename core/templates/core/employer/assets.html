@@ -1,7 +1,10 @@
 
 <button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#assetAddForm"><span>+</span>Add Asset</button>
 {% if assets %}
-<button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#assetAssignForm"><span>-></span>Assign Asset</button>
+<button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#assetAssignForm"><span>-&gt;</span>Assign Asset</button>
+{% endif %}
+{% if assigned_assets %}
+<button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#assetReclaimForm"><span>&lt;-</span>Reclaim Asset</button>
 {% endif %}
 
 <div class="collapse" id="assetAddForm">
@@ -16,6 +19,12 @@
     </div>
 </div>
 
+<div class="collapse" id="assetReclaimForm">
+    <div class="asset-reclaim-form-wrapper">
+        {% include './asset_reclaim.html' %}
+    </div>
+</div>
+
 {% for asset in assets %}
     <div class="row">
         <div class="col-md-4 col-sm-3">
@@ -25,7 +34,7 @@
         <div class="col-md-8 col-sm-9">
             <p>Asset ID:{{ asset.0.asset }}</p>
             <p>Description:{{ asset.0.description }}</p>
-            <p>
+            <p id="for-asset-assigned">
                 {% if asset.1 is not None %}
                     Assigned to: {{ asset.1.user.email }}
                 {% else %}
