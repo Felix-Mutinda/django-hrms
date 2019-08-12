@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    /* asset assign handler */
+    $('#asset-assign-form').submit(function(event){
+        event.preventDefault();
+
+        /* read the form */
+        let formData = {
+            'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+            'asset_id': $("input[name='asset_id']").val(),
+            'employee_email': $("input[name='employee_email']").val(),
+        }
+        
+        let url = $('#asset-assign-form').attr('action');
+        
+        /* post form using ajax */
+        $.post(url, formData, function(data, status){
+            $('.asset-assign-form-wrapper').html(data);
+        });
+    });
+
+</script>

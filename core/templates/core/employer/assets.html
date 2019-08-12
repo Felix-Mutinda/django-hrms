@@ -1,8 +1,18 @@
 
 <button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#assetAddForm"><span>+</span>Add Asset</button>
+{% if assets %}
+<button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#assetAssignForm"><span>-></span>Assign Asset</button>
+{% endif %}
+
 <div class="collapse" id="assetAddForm">
     <div class="asset-add-form-wrapper">
         {% include './asset_add.html' %}
+    </div>
+</div>
+
+<div class="collapse" id="assetAssignForm">
+    <div class="asset-assign-form-wrapper">
+        {% include './asset_assign.html' %}
     </div>
 </div>
 
@@ -13,9 +23,17 @@
         </div>
         
         <div class="col-md-8 col-sm-9">
-            <p>Asset ID:{{ asset.asset }}</p>
-            <p>Description:{{ asset.description }}</p>
+            <p>Asset ID:{{ asset.0.asset }}</p>
+            <p>Description:{{ asset.0.description }}</p>
+            <p>
+                {% if asset.1 is not None %}
+                    Assigned to: {{ asset.1.user.email }}
+                {% else %}
+                    <em class="text-muted">Not assigned yet</em>
+                {% endif %}
+            </p>
         </div>
+        
     </div>
 {% empty %}
     <div class="row">

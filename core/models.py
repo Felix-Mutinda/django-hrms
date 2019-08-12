@@ -78,7 +78,7 @@ class Asset(models.Model):
 
 # track which asset is owned by which employee
 class AssignedAsset(models.Model):
-    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    asset = models.OneToOneField(Asset, on_delete=models.CASCADE)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
 

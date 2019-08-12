@@ -2,6 +2,6 @@
 
 <form method="post" action="{% url 'core:asset_add' %}" id="asset-add-form" >
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ new_asset_form.as_p }}
     <button type="submit" id="asset-add-btn">Add</button>
 </form>
