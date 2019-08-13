@@ -17,6 +17,7 @@ class EmployerSignupForm(UserCreationForm):
     def save(self):
         user = super().save(commit=False)
         user.is_employer = True
+        user.is_active = False
         user.save()
         
         # create employer profile for user

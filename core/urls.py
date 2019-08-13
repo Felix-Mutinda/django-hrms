@@ -29,4 +29,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('login_redirect', core_views.login_redirect, name='login_redirect'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('activate/account/<uidb64>/<token>/', core_views.activate_account, name='activate_account'),
+    path('account/activation/sent/', core_views.account_activation_sent, name='account_activation_sent'),
 ]
