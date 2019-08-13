@@ -1,8 +1,18 @@
 
 <button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#employeeAddForm"><span>+</span>Add Employee</button>
+{% if employees %}
+<button type="button" class="my-btn btn-add" data-toggle="collapse" data-target="#employeePositionEditForm"><span>&lt;&gt;</span>Edit Employee Position</button>
+{% endif %}
+
 <div class="collapse" id="employeeAddForm">
-    <div class="employee-add-form-wrapper">
+    <div class="employee-add-form-wrapper col-md-6">
         {% include './employee_add.html' %}
+    </div>
+</div>
+
+<div class="collapse" id="employeePositionEditForm">
+    <div class="employee-position-edit-form-wrapper col-md-6">
+        {% include './employee_position_edit.html' %}
     </div>
 </div>
 

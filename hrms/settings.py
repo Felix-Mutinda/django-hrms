@@ -132,3 +132,24 @@ LOGIN_URL = 'core:login'
 LOGOUT_URL = 'core:logout'
 LOGIN_REDIRECT_URL = 'core:login_redirect'
 LOGOUT_REDIRECT_URL = 'core:home'
+
+# use bootstrap friendly message tags
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO:  'alert-info',
+    messages.WARNING: 'alert-warning',
+    messages.SUCCESS: 'alert-success',
+    messages.ERROR: 'alert-danger',
+}
+
+
+
+
+
+
+
+
+
+

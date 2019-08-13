@@ -69,6 +69,14 @@ class EmployeeCreationForm(forms.ModelForm):
         
         return user
 
+# employee position change form
+class EmployeePositionChangeForm(forms.ModelForm):
+    
+    class Meta:
+        model = User
+        fields = ['email', 'position']
+    
+
 # employee view/update profile 
 class EmployeeProfileForm(forms.ModelForm):
     

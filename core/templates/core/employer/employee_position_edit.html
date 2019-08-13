@@ -1,0 +1,8 @@
+{% include './_handle_employee_position_edit_script.html' %}
+
+<form method="post" action="{% url 'core:employee_position_edit' %}" id="employee-position-edit-form">
+    {% include '../_messages.html' %}
+    {% csrf_token %}
+    {{ employee_position_edit_form.as_p }}
+    <button id="employee-position-edit-btn" type="submit">Change</button>
+</form>

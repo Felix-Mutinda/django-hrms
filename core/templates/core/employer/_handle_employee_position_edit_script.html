@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+    /* employe change role/position handler */
+    $('#employee-position-edit-form').submit(function(e){
+        e.preventDefault();
+        
+        /* read the form */
+        let formData = {
+            'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+            'email': $("#employee-position-edit-form input[name='email']").val(),
+            'position': $("#employee-position-edit-form input[name='position']").val(),
+        }
+        
+        let url = $('#employee-position-edit-form').attr('action');
+        
+        /* post form using ajax */
+        $.post(url, formData, function(data, status){
+            $('.employee-position-edit-form-wrapper').html(data);
+        });
+    });
+</script>

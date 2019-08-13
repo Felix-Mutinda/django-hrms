@@ -1,6 +1,7 @@
 {% include './_handle_asset_assign_script.html' %}
 
 <form method="post" action="{% url 'core:asset_assign' %}" id="asset-assign-form">
+    {% include '../_messages.html' %}
     {% csrf_token %}
     {{ asset_assign_form.as_p }}
     <button id="asset-assign-btn" type="submit">Assign</button>

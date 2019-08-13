@@ -1,6 +1,7 @@
 {% include './_handle_employee_profile_update_script.html' %}
 
 <form action="{% url 'core:employee_profile' %}" method="post" accept-charset="utf-8" id="employee-profile-form">
+    {% include '../_messages.html' %}
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" id="employee-profile-btn">Save</button>
