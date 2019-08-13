@@ -59,10 +59,10 @@ $(function() {
         updateMainContent('/employee/profile');
     });
     
-    /* display employees list on employer dashboard by default */
+    /* display employee/employer dashboard by default */
     if ($(location).attr('pathname') == '/employer/dashboard/') {
         updateMainContent('/employer/employees');
-    } else {
+    } else if ($(location).attr('pathname') == '/employee/dashboard/') { 
         updateMainContent('/employee/assigned-assets');
     }
     
