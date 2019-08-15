@@ -34,7 +34,7 @@ def employer_signup(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user)
             })
-            user.email_user(subject, message)
+            user.email_user(subject, message, from_email='3mutindafelix@gmail.com')
             
             messages.success(request, 'An accout activation link has been sent to your email: ' + user.email +
                                 '. Go to your email and click the link to activate your account.')
@@ -135,7 +135,9 @@ def employee_add(request):
     if request.method == 'POST':
         form = EmployeeCreationForm(request.POST)
         if form.is_valid():
-            employee = form.save()
+            employee = form.save(commit=False)
+            employee.is_active = False
+            employee.save()
             
             # current user becomes the employer of employee
             Employee.objects.create(
@@ -143,7 +145,18 @@ def employee_add(request):
                 employer = request.user.employer
             )
             
-            messages.success(request, 'Employee has been added successfully')
+            # send employee a account activation email
+            current_site = get_current_site(request)
+            subject = 'Activate Employee Account'
+            message = render_to_string('registration/account_activation_email.html', {
+                'user': employee,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(employee.pk)),
+                'token': account_activation_token.make_token(employee)
+            })
+            employee.email_user(subject, message, from_email='3mutindafelix@gmail.com')
+            
+            messages.success(request, 'Employee has been added successfully and a confirmation email sent to their account')
             return redirect('core:employee_add')
     else:
         form = EmployeeCreationForm()

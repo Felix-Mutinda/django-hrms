@@ -144,15 +144,15 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-# smtp
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+# mailjet smtp relay
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'in-v3.mailjet.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = '3mutindafelix@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = '35b25931da52f8b50275ed5acb55657d'
+EMAIL_HOST_PASSWORD = 'c188bf2cab7109b50176268ee26ecf89'
 EMAIL_USE_TLS = True
 
-EMAIL_FILE_PATH = 'tmp/email_messages'
+# EMAIL_FILE_PATH = 'tmp/email_messages'
 
 
 
