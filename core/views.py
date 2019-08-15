@@ -35,7 +35,10 @@ def employer_signup(request):
                 'token': account_activation_token.make_token(user)
             })
             user.email_user(subject, message)
-            return redirect('core:account_activation_sent')
+            
+            messages.success(request, 'An accout activation link has been sent to your email: ' + user.email +
+                                '. Go to your email and click the link to activate your account.')
+            return redirect('core:home')
     else:
         form = EmployerSignupForm()
     
@@ -255,10 +258,13 @@ def activate_account(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
-        return redirect('core:login_redirect')
-    else:
-        return HttpResponse('<p>Account activation link is Invalid!</p>')
+        
+        messages.success(request, 'You have successfully confirmed your email. Log in to proceed.')
+        return redirect('core:login')
+    
+    # invalid link
+    messages.error(request, 'Account activation link is invalid or has expired. Contact system administratior for assistance')
+    return redirect('core:home')
 
 # account activation email sent
 def account_activation_sent(request):

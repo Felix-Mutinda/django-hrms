@@ -3,5 +3,5 @@ Dear {{ user.username }},
 
 Please click on the link below to activate your account:
 
-http://{{ domain }}{% url 'core:activate_account' uidb64=uid token=token %}
+https://{{ domain }}{% url 'core:activate_account' uidb64=uid token=token %}
 {% endautoescape %}
