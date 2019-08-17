@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.http import HttpResponse
@@ -6,7 +6,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-
+from django.contrib.auth.forms import SetPasswordForm
 
 from .forms import *
 from .models import User, Employer, Employee, Asset, AssignedAsset
@@ -272,8 +272,12 @@ def activate_account(request, uidb64, token):
         user.is_active = True
         user.save()
         
-        messages.success(request, 'You have successfully confirmed your email. Log in to proceed.')
-        return redirect('core:login')
+        if user.is_employer:
+            messages.success(request, 'You have successfully confirmed your email. Log in to proceed.')
+            return redirect('core:login')
+        else:
+            messages.info(request, 'Set a password for your Employee account.')
+            return redirect('core:employee_set_password', uid=user.id)
     
     # invalid link
     messages.error(request, 'Account activation link is invalid or has expired. Contact system administratior for assistance')
@@ -284,5 +288,19 @@ def account_activation_sent(request):
     return HttpResponse('<p>An activation link has been sent to your Email</p>')
 
 
-
-
+# upon activating account, employee should set password
+def employee_set_password(request, uid):
+    user = get_object_or_404(User, pk=uid)
+    
+    if request.method == 'POST':
+        form = SetPasswordForm(user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            
+            messages.success(request, 'Welcome '+user.email+'. Your account is now operational')
+            return redirect('core:login_redirect')
+    else:
+        form = SetPasswordForm(user)
+    
+    return render (request, 'core/employee/set_password.html', {'set_password_form': form, 'user': user})
