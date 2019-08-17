@@ -156,7 +156,7 @@ def employee_add(request):
             })
             employee.email_user(subject, message, from_email='3mutindafelix@gmail.com')
             
-            messages.success(request, 'Employee has been added successfully and a confirmation email sent to their account')
+            messages.success(request, 'Employee '+employee.email+' has been added successfully and an account activation link sent to their email')
             return redirect('core:employee_add')
     else:
         form = EmployeeCreationForm()
