@@ -1,7 +1,13 @@
 /* all screens */
 
-header.header {
+header.header { 
+    background: lighten($myrtleGreen, 40%);
     border-bottom: 1px solid lighten($myrtleGreen, 20%);
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 10px;
 }
 
 .navbar-brand {

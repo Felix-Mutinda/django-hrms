@@ -36,7 +36,13 @@ body, body::before, body::after {
 
 /* all screens */
 header.header {
-  border-bottom: 1px solid #4e9eb7; }
+  background: #97c6d4;
+  border-bottom: 1px solid #4e9eb7;
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 10px; }
 
 .navbar-brand {
   font-weight: 700;
