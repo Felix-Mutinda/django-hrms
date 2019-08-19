@@ -7,7 +7,15 @@ from .models import (User, Employer, Employee, Asset, AssignedAsset)
 # employer signup form
 class EmployerSignupForm(UserCreationForm):
     company_name = forms.CharField()
-    number_of_employees = forms.IntegerField()
+    
+    CHOICES = (
+        ('', 'Choose'),
+        ('10', '10 Employees'),
+        ('50', '50 Employees'),
+        ('100', '100 Employees'),
+        ('1000', '1000 Employees'),
+    )
+    number_of_employees = forms.ChoiceField(choices=CHOICES)
     
     class Meta(UserCreationForm.Meta):
         model = User
@@ -34,7 +42,15 @@ class EmployerSignupForm(UserCreationForm):
 # employer view/update profile 
 class EmployerProfileForm(forms.ModelForm):
     company_name = forms.CharField()
-    number_of_employees = forms.IntegerField()
+    
+    CHOICES = (
+        ('', 'Choose...'),
+        ('10', '10 Employees'),
+        ('50', '50 Employees'),
+        ('100', '100 Employees'),
+        ('1000', '1000 Employees'),
+    )
+    number_of_employees = forms.ChoiceField(choices=CHOICES)
     
     class Meta:
         model = User

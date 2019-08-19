@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'core',
+    
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -154,7 +156,8 @@ EMAIL_USE_TLS = True
 
 # EMAIL_FILE_PATH = 'tmp/email_messages'
 
-
+# django crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 

@@ -1,8 +1,10 @@
 {% include './_handle_asset_assign_script.html' %}
 
+{% load crispy_forms_tags %}
+
 <form method="post" action="{% url 'core:asset_assign' %}" id="asset-assign-form">
     {% include '../_messages.html' %}
     {% csrf_token %}
-    {{ asset_assign_form.as_p }}
-    <button id="asset-assign-btn" type="submit">Assign</button>
+    {{ asset_assign_form | crispy }}
+    <button id="asset-assign-btn" type="submit" class="my-btn my-btn-primary">Assign</button>
 </form>

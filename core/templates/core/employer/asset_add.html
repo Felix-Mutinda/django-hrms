@@ -1,8 +1,10 @@
 {% include './_handle_asset_add_script.html' %}
 
+{% load crispy_forms_tags %}
+
 <form method="post" action="{% url 'core:asset_add' %}" id="asset-add-form" >
     {% include '../_messages.html' %}
     {% csrf_token %}
-    {{ new_asset_form.as_p }}
-    <button type="submit" id="asset-add-btn">Add</button>
+    {{ new_asset_form | crispy }}
+    <button type="submit" id="asset-add-btn" class="my-btn my-btn-primary">Add</button>
 </form>

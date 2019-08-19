@@ -1,13 +1,18 @@
 {% extends 'core/base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}Django HRMS - Login{% endblock %}
 
 {% block content %}
-    <p>Welcome to Login.</p>
+    <h4 class="text-muted">Login</h4>
     
-    <form action="{% url 'core:login' %}" method="post" accept-charset="utf-8">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+    <div class="col-md-6 col-sm-8">
+        <form action="{% url 'core:login' %}" method="post" accept-charset="utf-8">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button type="submit" class="my-btn my-btn-primary p-2">Login</button>
+        </form>
+    </div>
+    
 {% endblock %}

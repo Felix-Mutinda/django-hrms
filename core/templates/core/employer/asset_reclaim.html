@@ -1,8 +1,10 @@
 {% include './_handle_asset_reclaim_script.html' %}
 
+{% load crispy_forms_tags %}
+
 <form method="post" action="{% url 'core:asset_reclaim' %}" id="asset-reclaim-form">
     {% include '../_messages.html' %}
     {% csrf_token %}
-    {{ asset_reclaim_form.as_p }}
-    <button id="asset-reclaim-btn" type="submit">Reclaim</button>
+    {{ asset_reclaim_form | crispy }}
+    <button id="asset-reclaim-btn" type="submit" class="my-btn my-btn-primary p-2">Reclaim</button>
 </form>

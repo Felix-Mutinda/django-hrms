@@ -9,6 +9,15 @@ body, body::before, body::after {
   transition: all .2s;
   font-weight: 500; }
 
+.my-btn-primary {
+  background: #08859f;
+  border-color: #08859f;
+  color: #fff; }
+
+.my-btn-primary:hover {
+  background: #077187;
+  border-color: #077187; }
+
 .btn-add {
   background: #077187;
   border-color: #077187;
@@ -36,7 +45,8 @@ header.header {
 /* on xs, sm screens */
 @media (min-width: 0px) and (max-width: 768px) {
   #login-btn, #logout-btn, #employer-signup-btn {
-    font-weight: 500; } }
+    font-weight: 500;
+    border-style: none; } }
 /* on >= md  screens */
 @media (min-width: 768px) {
   header #navbarSupportedContent {

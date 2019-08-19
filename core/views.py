@@ -16,7 +16,8 @@ def home(request):
     '''
     handles requests to the home page.
     '''
-    return render(request, 'core/home.html')
+    # return render(request, 'core/home.html')
+    return redirect('core:login')
 
 # handles employer signup requests
 def employer_signup(request):

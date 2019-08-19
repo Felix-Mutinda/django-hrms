@@ -1,11 +1,13 @@
 {% include './_handle_employer_profile_update_script.html' %}
 
-<div class="employer-profile-form-container col-md-8">
+{% load crispy_forms_tags %}
+
+<div class="employer-profile-form-container col-md-6">
     <form action="{% url 'core:employer_profile' %}" method="post" accept-charset="utf-8" id="employer-profile-form">
         {% include '../_messages.html' %}
         
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" id="employer-profile-btn">Save</button>
+        {{ form | crispy }}
+        <button type="submit" id="employer-profile-btn" class="my-btn my-btn-primary p-2">Save</button>
     </form>
 </div>
