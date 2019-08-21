@@ -37,7 +37,7 @@ def employer_signup(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user)
             })
-            user.email_user(subject, message, from_email='3mutindafelix@gmail.com')
+            user.email_user(subject, message, from_email='django.hrms.system@gmail.com')
             
             messages.success(request, 'An accout activation link has been sent to your email: ' + user.email +
                                 '. Go to your email and click the link to activate your account.')
@@ -172,7 +172,7 @@ def employee_add(request):
                 'uid': urlsafe_base64_encode(force_bytes(employee.pk)),
                 'token': account_activation_token.make_token(employee)
             })
-            employee.email_user(subject, message, from_email='3mutindafelix@gmail.com')
+            employee.email_user(subject, message, from_email='django.hrms.system@gmail.com')
             
             messages.info(request, 'Employee '+employee.email+' has been added successfully and an account activation link sent to their email')
             return redirect('core:employee_add')
