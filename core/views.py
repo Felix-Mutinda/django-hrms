@@ -7,10 +7,12 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth.decorators import login_required
 
 from .forms import *
 from .models import User, Employer, Employee, Asset, AssignedAsset
 from .tokens import account_activation_token
+from .decorators import employer_required, employee_required
 
 def home(request):
     '''
@@ -47,6 +49,8 @@ def employer_signup(request):
 
 
 # employer profile
+@login_required
+@employer_required
 def employer_profile(request):
     user = request.user
     form = EmployerProfileForm(request.POST or None, instance=user, initial = {
@@ -63,14 +67,19 @@ def employer_profile(request):
     return render(request, 'core/employer/profile.html', {'form': form})
 
 # the employer dashboard
+@login_required
+@employer_required
 def employer_dashboard(request):
     return render(request, 'core/employer/dashboard.html')
     
 # the employee dashboard
+@login_required
+@employee_required
 def employee_dashboard(request):
     return render(request, 'core/employee/dashboard.html')
 
 # redirect employer to employer_dashboard and employee to employee_dashboard
+@login_required
 def login_redirect(request):
     if request.user.is_employer:
         return redirect('core:employer_dashboard')
@@ -79,6 +88,8 @@ def login_redirect(request):
 
 # displays all employees associated with the current user,
 # a form to add a new employee and another to change the employee position
+@login_required
+@employer_required
 def employees_list(request):
     user = request.user
     
@@ -97,6 +108,8 @@ def employees_list(request):
     
 # displays all assets associated with  the current user,
 # a form to add a  new asset and another form to assign an asset.
+@login_required
+@employer_required
 def employer_assets(request):
     user = request.user
     employer_assets = Asset.objects.filter(employer=user.employer)
@@ -126,12 +139,16 @@ def employer_assets(request):
 
 # displays a real time notifications page for the current user,
 # the notifications are delivered using pusher/channels
+@login_required
+@employer_required
 def employer_notifications(request):
     
     return render(request, 'core/employer/notifications.html')
 
 
 # add employee 
+@login_required
+@employer_required
 def employee_add(request):
     if request.method == 'POST':
         form = EmployeeCreationForm(request.POST)
@@ -165,6 +182,8 @@ def employee_add(request):
     return render(request, 'core/employer/employee_add.html', {'employee_creation_form': form})
 
 # edit employee position
+@login_required
+@employer_required
 def employee_position_edit(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -186,6 +205,8 @@ def employee_position_edit(request):
 
 
 # add company asset
+@login_required
+@employer_required
 def asset_add(request):
     if request.method == 'POST':
         form = AssetCreationForm(request.POST)
@@ -202,6 +223,8 @@ def asset_add(request):
     return render(request, 'core/employer/asset_add.html', {'new_asset_form': form})
 
 # display employee assigned asset 
+@login_required
+@employee_required
 def employee_assigned_assets(request):
     assigned_assets = AssignedAsset.objects.filter(employee=request.user.employee)
     assets = [a.asset for a in assigned_assets]
@@ -210,6 +233,8 @@ def employee_assigned_assets(request):
 
 
 # employee profile 
+@login_required
+@employee_required
 def employee_profile(request):
     form = EmployeeProfileForm(request.POST or None, instance=request.user)
     
@@ -223,6 +248,8 @@ def employee_profile(request):
 
 
 # assign an asset to an employee
+@login_required
+@employer_required
 def asset_assign(request):
     if request.method == 'POST':
         form = AssignAssetForm(request.POST)
@@ -243,7 +270,9 @@ def asset_assign(request):
         
     return render(request, 'core/employer/asset_assign.html', {'asset_assign_form': form})
 
-# reclaim an assigned asset 
+# reclaim an assigned asset
+@login_required
+@employer_required
 def asset_reclaim(request):
     if request.method == 'POST':
         form = ReclaimAssetForm(request.POST)
