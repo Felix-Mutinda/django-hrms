@@ -1,0 +1,23 @@
+<script type="text/javascript">
+    /* Pusher Channels, for Notifications. */
+    
+    const APP_CLUSTER = "ap3";
+    const APP_KEY = "2074a8845117c7e62d44";
+    
+    let pusher = new Pusher(APP_KEY, {
+      cluster: APP_CLUSTER,
+      authEndpoint: '/pusher/auth/',
+      auth: {
+          headers: {
+            'X-CSRFToken': Cookies.get('csrftoken')
+          }
+        }
+    });
+    
+    /* employer email is the private channel name */
+    let channel = pusher.subscribe('private-{{user.email}}');
+    
+    channel.bind('django-hrms-event', function(data) {
+      console.log('An event was triggered with message: ' + data.message);
+    });
+</script>   

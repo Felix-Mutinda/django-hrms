@@ -159,6 +159,14 @@ EMAIL_USE_TLS = True
 # django crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# pusher settings
+APP_ID = '846715'
+APP_KEY = '2074a8845117c7e62d44'
+APP_CLUSTER = 'ap3'
+APP_SECRET = '778d33fd8ee3e37bc7af'
+
+
+
 
 
 

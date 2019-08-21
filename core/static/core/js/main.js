@@ -67,7 +67,6 @@ $(function() {
     }
     
     
-    /* Pusher Channels, for Notifications. */
     
 });
 

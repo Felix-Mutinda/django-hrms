@@ -33,4 +33,7 @@ urlpatterns = [
     path('activate/account/<slug:uidb64>/<slug:token>/', core_views.activate_account, name='activate_account'),
     path('account/activation/sent/', core_views.account_activation_sent, name='account_activation_sent'),
     
+    # pusher user authentication
+    path('pusher/auth/', core_views.pusher_auth, name='pusher_auth'),
+    
 ]
