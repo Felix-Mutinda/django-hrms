@@ -3,3 +3,4 @@ django-heroku
 gunicorn
 django-crispy-forms
 pusher
+six
