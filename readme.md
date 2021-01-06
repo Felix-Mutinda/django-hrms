@@ -10,4 +10,7 @@ assets to his employees and has a recored of which asset is assigned to
 which employee.  
 Employees can edit their profiles but never their role/position.  
 Employers will get **realtime notifications** on the activities of their employees  
-while on the system (i.e *logging in, updating/editing profiles and logging out*).
+while on the system (i.e *logging in, updating/editing profiles and logging out*).  
+  
+
+Try it [djangohrms.herokuapp.com](https://djangohrms.herokuapp.com)
